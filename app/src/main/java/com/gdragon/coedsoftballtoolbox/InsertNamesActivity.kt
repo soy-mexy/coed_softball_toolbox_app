@@ -14,6 +14,7 @@ import java.lang.StringBuilder
 
 
 class InsertNamesActivity : AppCompatActivity() {
+    var coedLiteFlag = false
     val maleList = ArrayList<String>()
     val femaleList = ArrayList<String>()
     val maleDisplayList = StringBuilder()
@@ -22,9 +23,7 @@ class InsertNamesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_message)
-        val coedLiteFlag = intent.getBooleanExtra("coedLiteFlag", true)
-        // Get the Intent that started this activity and extract the string
-        val message = coedLiteFlag.toString();
+        coedLiteFlag = intent.getBooleanExtra("coedLiteFlag", true)
 
     }
 
@@ -57,10 +56,14 @@ class InsertNamesActivity : AppCompatActivity() {
 
     }
 
-    fun doneAndCreateList
+    fun doneAndCreateList(view: View){
+        val intent = Intent(this, BattingLineup::class.java).apply {
+            putExtra("coedLiteFlag", coedLiteFlag)
+            putExtra("maleList", maleList)
+            putExtra("femaleList", femaleList)
+        }
 
-
-
-
+        startActivity(intent)
+    }
 
 }

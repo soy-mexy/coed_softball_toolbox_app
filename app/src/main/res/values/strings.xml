@@ -6,4 +6,5 @@
     <string name="female_textBox">Enter Female Name</string>
     <string name="add_button_text">Add</string>
     <string name="done_button">Done</string>
+    <string name="batting_lineup">Batting Lineup</string>
 </resources>
