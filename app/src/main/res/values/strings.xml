@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Coed Softball Toolbox</string>
+    <string name="button_coedlite">Coed Lite</string>
+    <string name="button_coed">Coed</string>
+    <string name="male_textbox">Enter Male Name</string>
+    <string name="female_textBox">Enter Female Name</string>
+    <string name="add_button_text">Add</string>
+    <string name="done_button">Done</string>
+</resources>
