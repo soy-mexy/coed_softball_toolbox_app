@@ -7,53 +7,45 @@ import kotlinx.android.synthetic.main.activity_batting_lineup.*
 
 class BattingLineup : AppCompatActivity() {
     var coedLiteFlag = false
-    var maleList = ArrayList<String>()
-    var femaleList = ArrayList<String>()
-    var femaleIndex = 0
-    var maleIndex = 0
+    var maleList = mutableListOf<String>()
+    var femaleList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_batting_lineup)
         coedLiteFlag = intent.getBooleanExtra("coedLiteFlag", true)
-        maleList = intent.getStringArrayListExtra("maleList")
-        femaleList = intent.getStringArrayListExtra("femaleList")
+        maleList = intent.getStringArrayListExtra("maleList").toMutableList()
+        femaleList = intent.getStringArrayListExtra("femaleList").toMutableList()
 
-        batting_lineup.text = createDisplayList(coedLiteFlag, maleList, femaleList)
+        batting_lineup.text = createDisplayList()
 
     }
 
-    fun createDisplayList(coedLite: Boolean, mList: ArrayList<String>, fList: ArrayList<String>): String{
+    fun createDisplayList(): String{
         val battingLineupDisplay = StringBuilder()
 
 
-        if(coedLite){
-            val maleArray = mList.toArray()
-            while(maleIndex < maleArray.size) {
-                battingLineupDisplay.append(maleArray[maleIndex]).append("\n")
-                if(++maleIndex < maleArray.size) {
-                    battingLineupDisplay.append(maleArray[maleIndex]).append("\n")
-                }
-                else{
-                    break
-                }
-                if(femaleIndex == fList.size){
-                    femaleIndex = 0
-                }
-                battingLineupDisplay.append(femaleList[femaleIndex] + "\n")
-                femaleIndex++
-                maleIndex++
+        if(coedLiteFlag){
+            val mSize = maleList.size
+            for(i in 0 until mSize) {
+                battingLineupDisplay.append(maleList.get(0)).append("\n")
+                battingLineupDisplay.append(maleList.get(1)).append("\n")
+
+                maleList = (maleList.drop(2) + maleList.take(2)).toMutableList()
+
+                battingLineupDisplay.append(femaleList.first() + "\n")
+                femaleList = (femaleList.drop(1) + femaleList.take(1)).toMutableList()
             }
         }
         else{
-            val maleArray = mList.toArray()
-            for(maleIndex in maleArray.indices) {
-                battingLineupDisplay.append(maleArray[maleIndex]).append("\n")
-                if(femaleIndex == fList.size){
-                    femaleIndex = 0
-                }
-                battingLineupDisplay.append(femaleList[femaleIndex] + "\n")
-                femaleIndex++
+            val mSize = maleList.size
+            for(i in 0 until mSize) {
+
+                battingLineupDisplay.append(maleList.first()).append("\n")
+                maleList = (maleList.drop(1) + maleList.take(1)).toMutableList()
+
+                battingLineupDisplay.append(femaleList.first() + "\n")
+                femaleList = (femaleList.drop(1) + femaleList.take(1)).toMutableList()
             }
         }
 
