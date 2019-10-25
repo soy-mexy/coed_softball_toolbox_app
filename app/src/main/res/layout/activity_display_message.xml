@@ -71,6 +71,7 @@
         android:layout_marginStart="156dp"
         android:layout_marginLeft="156dp"
         android:layout_marginBottom="16dp"
+        android:onClick="doneAndCreateList"
         android:text="@string/done_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
