@@ -3,6 +3,8 @@ package com.gdragon.coedsoftballtoolbox
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_batting_lineup.*
 
 class BattingLineup : AppCompatActivity() {
@@ -27,7 +29,7 @@ class BattingLineup : AppCompatActivity() {
 
         if(coedLiteFlag){
             val mSize = maleList.size
-            for(i in 0 until mSize) {
+            for(i in 0 until mSize step 2) {
                 battingLineupDisplay.append(maleList.get(0)).append("\n")
                 battingLineupDisplay.append(maleList.get(1)).append("\n")
 
@@ -50,5 +52,12 @@ class BattingLineup : AppCompatActivity() {
         }
 
         return battingLineupDisplay.toString()
+    }
+
+    fun nextIteration(view: View) {
+
+        findViewById<TextView>(R.id.batting_lineup).apply{
+            text = createDisplayList()
+        }
     }
 }

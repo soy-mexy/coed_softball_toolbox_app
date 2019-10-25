@@ -7,4 +7,5 @@
     <string name="add_button_text">Add</string>
     <string name="done_button">Done</string>
     <string name="batting_lineup">Batting Lineup</string>
+    <string name="next_iteration_button">Next Iteration</string>
 </resources>
